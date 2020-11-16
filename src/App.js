@@ -1,36 +1,46 @@
 
-import PropTypes from "prop-types";
+import React from "react"
+// import PropTypes from "prop-types";
 
-function Fruit({fav}){
-  return <h3>I like {fav}</h3>
-}
+class App extends React.Component{
 
-Fruit.propTypes = {
-  fav : PropTypes.string.isRequired
-};
+  constructor(props){
+    super(props);
+    console.log("constructor");
+  }
 
-const arr = [
-  {name : "byungwook"},
-  {name : "wook"},
-]
+  state = {
+    count : 0,
+    val : 10
+  };
 
-function App() {
-  var a = "ASD";
+  add = () => {
+    this.setState(current => ({count : current.count + 1}))
+  };
+  minus = () => {
+    this.setState(current => ({count : current.count + 1}))
+  };
 
-  return (
-    <div className="App">
-      prop값 전달하기
-      <Fruit fav = "apple"/>
-      변수 선언해서 아래와 같은방법으로도  값 전달 가능
-      <Fruit fav={a}/>
-      map함수 활용해서 동적으로 html생성하기
-      {arr.map(function(current){
-        return <Fruit key = {current.name} fav = {current.name}/>
-      })}
+  componentDidMount(){
+    console.log("Did mounting!");
+  }
 
-      
-    </div>
-  );
+  componentDidUpdate(){
+    console.log("Did update!");
+  }
+
+  render(){
+    console.log("Did rendering");
+    return (
+      <div>
+        <h3>count: { this.state.count } </h3>
+        <button onClick={this.add}>Add</button>
+        <button onClick={this.minus}>Minus</button>
+      </div>
+    
+    );
+  }
+
 }
 
 export default App;
