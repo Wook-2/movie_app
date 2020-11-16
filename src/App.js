@@ -4,43 +4,22 @@ import React from "react"
 
 class App extends React.Component{
 
-  constructor(props){
-    super(props);
-    console.log("constructor");
-  }
-
   state = {
-    count : 0,
-    val : 10
-  };
-
-  add = () => {
-    this.setState(current => ({count : current.count + 1}))
-  };
-  minus = () => {
-    this.setState(current => ({count : current.count + 1}))
+    isLoading: true,
+    movies : []
   };
 
   componentDidMount(){
-    console.log("Did mounting!");
-  }
-
-  componentDidUpdate(){
-    console.log("Did update!");
+    setTimeout(()=>{
+      this.setState({ isLoading : false });
+    }, 6000);
   }
 
   render(){
-    console.log("Did rendering");
-    return (
-      <div>
-        <h3>count: { this.state.count } </h3>
-        <button onClick={this.add}>Add</button>
-        <button onClick={this.minus}>Minus</button>
-      </div>
-    
-    );
+    console.log(this.state);
+    const {isLoading} = this.state;
+    return <div>{isLoading ? "Loading":"Ready"}</div>
   }
-
 }
 
 export default App;
